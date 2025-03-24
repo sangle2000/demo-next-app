@@ -18,7 +18,7 @@ const products = [
     }
 ]
 
-export async function GET(request: Request, { params }: { params : { id: string } }) {
+export async function GET(request: Request, { params }) {
     const { id } = await params;
 
     const productId = parseInt(id, 10);
