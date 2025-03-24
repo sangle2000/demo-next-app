@@ -1,4 +1,5 @@
-import { NextResponse } from "next/server";
+import {NextRequest, NextResponse} from "next/server";
+import {NextApiResponse} from "next";
 
 const products = [
     {
@@ -18,8 +19,16 @@ const products = [
     }
 ]
 
-export async function GET(request: Request, { params }) {
-    const { id } = await params;
+type Props = {
+    params: Promise<{
+        id: string
+    }>
+}
+
+export async function GET(request: NextRequest, props: Props): Promise<Response> {
+    const params = await props.params
+
+    const { id } = params;
 
     const productId = parseInt(id, 10);
 
